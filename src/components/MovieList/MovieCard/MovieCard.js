@@ -10,7 +10,7 @@ const MovieCard = ({item}) => {
             <h2> {item.date}</h2>
             <h2> {item.type}</h2>
             <p> {item.description}</p>
-            <h1>{item.rating}</h1>
+            <h1>{item.FilterRating}</h1>
         </div>
     )
 }

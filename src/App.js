@@ -1,9 +1,14 @@
-import logo from './logo.svg';
+
 import './App.css';
 import MovieList from './components/MovieList/MovieList'
 import MovieFilter from './components/MovieFiltre/MovieFilter';
 import React ,{useState} from 'react'
 import AddMovie from './components/MovieAdd/AddMovie';
+import FilterRating from './components/MovieFiltre/FilterRating';
+import ReactStars from "react-rating-stars-component";
+
+
+
 
 
 
@@ -89,20 +94,39 @@ function App() {
     },
   ];
   const [search, setSearch] = useState('')
+  const [stars,setStars ] =useState ('')
   const [videos, setVideos] = useState(moviesData)
+  const [searchRating, setSearchRating] = useState(0)
+  const SearchRating  = (x) =>
+  {
+    setSearchRating(x)
+  }
 
  const handelSearch = x => { 
    setSearch(x)
  };
+ 
+ 
  //const []
  const addMovie = add =>{
         setVideos([...moviesData,add])
  }
- 
+ const handelStars = el => {setStars(el) };
+
   return (
     <div className="App">
+      <ReactStars
+            count={5}
+            name="rating"
+            size={24}
+            position="center"
+            activeColor="#ffd700"
+            onChange={(el) => {
+                handelStars(el);
+              }} />
         <MovieFilter handelSearch={handelSearch}/>
-      <MovieList moviesData={videos.filter(ele => ele.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())) }/>
+        <FilterRating SearchRating={SearchRating}/>
+      <MovieList moviesData={videos.filter(ele => ele.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())&& ele.rating>=searchRating) }/>
       <AddMovie addMovie={addMovie} />
     </div>
   );

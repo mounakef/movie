@@ -1,8 +1,10 @@
 .App {
   text-align: center;
+  
 }
-
-.App-logo {
+body
+{background:url('./background.jpg') no-repeat  center center/cover}
+.App-logo { 
   height: 40vmin;
   pointer-events: none;
 }
