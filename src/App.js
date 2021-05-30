@@ -94,7 +94,6 @@ function App() {
     },
   ];
   const [search, setSearch] = useState('')
-  const [stars,setStars ] =useState ('')
   const [videos, setVideos] = useState(moviesData)
   const [searchRating, setSearchRating] = useState(0)
   const SearchRating  = (x) =>
@@ -111,7 +110,7 @@ function App() {
  const addMovie = add =>{
         setVideos([...moviesData,add])
  }
- const handelStars = el => {setStars(el) };
+ const handelStars = el => {setSearchRating(el) };
 
   return (
     <div className="App">
@@ -125,7 +124,6 @@ function App() {
                 handelStars(el);
               }} />
         <MovieFilter handelSearch={handelSearch}/>
-        <FilterRating SearchRating={SearchRating}/>
       <MovieList moviesData={videos.filter(ele => ele.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())&& ele.rating>=searchRating) }/>
       <AddMovie addMovie={addMovie} />
     </div>
